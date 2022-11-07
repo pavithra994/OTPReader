@@ -91,7 +91,9 @@ class GmailMessages:
         e_date = s_date + datetime.timedelta(days=1)
 
         self.update_mail_list(_from=configs.OTP_EMAIL,_start_date=s_date,_end_date=e_date)
-        return self.get_mail_details()
+        if len(self.mails) > 0:
+            return self.get_mail_details()
+        return "No OTP", s_date
 
 
 
