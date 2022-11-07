@@ -24,12 +24,11 @@ Features:
 ```python
 from bank_otp_scrapper.gmail_api import GmailMessages
 
-
 mail = GmailMessages()
 otp, time = mail.latest()
 print(f"OTP: {otp} - time: {time}")
 
-
+```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
