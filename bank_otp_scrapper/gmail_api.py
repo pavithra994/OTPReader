@@ -8,14 +8,14 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-import configs
+from . import configs
 
 class GmailAuth:
     creds = None
 
     def __init__(self):
-        if os.path.exists('token.json'):
-            self.creds = Credentials.from_authorized_user_file('token.json', configs.SCOPES)
+        if os.path.exists(configs.GMAIL_API_TOKEN):
+            self.creds = Credentials.from_authorized_user_file(configs.GMAIL_API_TOKEN, configs.SCOPES)
         # If there are no (valid) credentials available, let the user log in.
         if not self.creds or not self.creds.valid:
             if self.creds and self.creds.expired and self.creds.refresh_token:
@@ -85,6 +85,13 @@ class GmailMessages:
         otp = _otp[0] if _otp else None
 
         return otp, time
+
+    def latest(self,date_range=1):
+        s_date = datetime.datetime.now().astimezone()
+        e_date = s_date + datetime.timedelta(days=1)
+
+        self.update_mail_list(_from=configs.OTP_EMAIL,_start_date=s_date,_end_date=e_date)
+        return self.get_mail_details()
 
 
 
