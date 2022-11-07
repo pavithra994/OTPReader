@@ -1,6 +1,6 @@
 # Bank OTP Scrapper
 
-this is a Python package that contains handy functions for scrap OTP keys from gmail. 
+this is a Python package that contains handy functions for scrap OTP keys from gmail. currently only working for sampath bank otp emails.
 
 
 ## Installation and updating
